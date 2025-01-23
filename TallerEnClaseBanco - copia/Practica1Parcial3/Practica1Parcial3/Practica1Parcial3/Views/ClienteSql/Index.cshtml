@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Practica1Parcial3.Models.ClienteSql>
+@{
+    ViewData["Title"] = "Cliente";
+}
+
+<h1>Lista de Clientes</h1>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First().Codigo)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Cedula)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Nombre)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Apellido)</th>
+                <th>@Html.DisplayNameFor(model => model.First().fechaNacimiento)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Mail)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Telefono)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Direccion)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Estado)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Codigo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Cedula)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Apellido)</td>
+                    <td>@Html.DisplayFor(modelItem => item.fechaNacimiento)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Mail)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Direccion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Codigo" class="btn btn-sm btn-primary">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@item.Codigo" class="btn btn-sm btn-primary">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <a asp-action="Create" class="btn btn-primary" id="btnCrearNuevoCliente" name="crearNuevoCliente">Crear Nuevo Cliente</a>
+
+    </div>
+</div>

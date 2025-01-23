@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WebApplicationLab.Models.Cliente>
+@{
+    ViewData["Title"] = "Cliente";
+}
+
+<h1>Lista de Clientes</h1>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First().Codigo)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Cedula)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Apellidos)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Nombres)</th>
+                <th>@Html.DisplayNameFor(model => model.First().FechaNacimiento)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Mail)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Direccion)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Provincia)</th>
+                <th>@Html.DisplayNameFor(model => model.First().SaldoCuenta)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Estado)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Codigo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Cedula)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Apellidos)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Nombres)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FechaNacimiento)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Mail)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Direccion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Provincia)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SaldoCuenta)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Codigo" class="btn btn-sm btn-primary" id="btnEditar" name="editarCliente">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@item.Codigo" class="btn btn-sm btn-primary" id="btnEliminar" name="eliminarCliente">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <a asp-action="Create" class="btn btn-primary" id="btnCrearNuevoCliente" name="crearNuevoCliente">Crear Nuevo Cliente</a>
+    </div>
+</div>

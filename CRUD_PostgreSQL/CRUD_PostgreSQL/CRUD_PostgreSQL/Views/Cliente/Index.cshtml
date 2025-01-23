@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CRUD_PostgreSQL.Models.Cliente>
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<h1 class="mb-4 text-dark">Lista de Clientes</h1>
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered" style="background-color: #f8f9fa;">
+            <thead class="thead-dark" style="background-color: #007bff; color: #ffffff;">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.First().Codigo)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Cedula)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Apellidos)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Nombres)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().FechaNacimiento)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Mail)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Telefono)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Direccion)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Saldo)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Estado)</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Codigo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Cedula)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Apellidos)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Nombres)</td>
+                        <td>@Html.DisplayFor(modelItem => item.FechaNacimiento)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Mail)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Direccion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Saldo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Codigo" class="btn btn-warning btn-sm me-2" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                          
+                            <a asp-action="Delete" asp-route-id="@item.Codigo" class="btn btn-danger btn-sm" title="Eliminar">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-4">
+        <button class="btn btn-primary" id="btnCrearCli" type="button" onclick="location.href='/Cliente/Create';">Crear Nuevo Cliente</button>
+    </div>
+</div>

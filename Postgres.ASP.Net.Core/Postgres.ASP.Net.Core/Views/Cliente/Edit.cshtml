@@ -1,0 +1,85 @@
+﻿@model Postgres.ASP.Net.Core.Models.Cliente
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Editar Cliente</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard v1</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="quickForm" asp-action="Edit">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <h3 class="card-title">Editar Cliente</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <input type="hidden" asp-for="Codigo" />
+                    <div class="form-group">
+                        <label for="cedula">Cédula</label>
+                        <input type="text" asp-for="Cedula" class="form-control" id="cedula" placeholder="Cédula" maxlength="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos</label>
+                        <input type="text" asp-for="Apellidos" class="form-control" id="apellidos" placeholder="Apellidos" maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="nombres">Nombres</label>
+                        <input type="text" asp-for="Nombres" class="form-control" id="nombres" placeholder="Nombres" maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label>Date:</label>
+                        <div class="input-group date" id="fechaNacimiento" data-target-input="nearest">
+                            <input asp-for="FechaNacimiento" type="text" class="form-control datetimepicker-input" data-target="#fechaNacimiento" />
+                            <div class="input-group-append" data-target="#fechaNacimiento" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mail">Mail</label>
+                        <input type="email" asp-for="Mail" class="form-control" id="mail" placeholder="Mail">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" asp-for="Telefono" class="form-control" id="telefono" placeholder="Teléfono" maxlength="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" asp-for="Direccion" class="form-control" id="direccion" placeholder="Dirección" maxlength="200">
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Estado" id="estado" type="checkbox" class="form-check-input">
+                        <label class="form-check-label" asp-for="Estado">Estado</label>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a asp-action="Index"><< Regresar</a>
+        </div>
+    </section>
+</form>

@@ -1,0 +1,143 @@
+﻿@model WebApplicationLab.Models.Cliente
+@{
+    ViewData["Title"] = "Crear";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Crear Cliente</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard v1</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <h3 class="card-title">Agregar Clientes</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                   
+                    <div class="form-group">
+                        <label asp-for="Apellidos"></label>
+                        <input asp-for="Apellidos" class="form-control" maxlength="100" />
+                        <span asp-validation-for="Apellidos" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Nombres"></label>
+                        <input asp-for="Nombres" class="form-control" maxlength="100" />
+                        <span asp-validation-for="Nombres" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FechaNacimiento"></label>
+                        <input asp-for="FechaNacimiento" type="date" class="form-control" />
+                        <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Mail"></label>
+                        <input asp-for="Mail" type="email" class="form-control" />
+                        <span asp-validation-for="Mail" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Direccion"></label>
+                        <input asp-for="Direccion" class="form-control" />
+                        <span asp-validation-for="Direccion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Provincia"></label>
+                        <select asp-for="Provincia" class="form-control" asp-items="ViewBag.Provincias" id="provincia-select">
+                            <option value="">Seleccione una provincia</option>
+                        </select>
+                        <span asp-validation-for="Provincia" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="CedulaGenerada" class="control-label"></label>
+                        <input asp-for="CedulaGenerada" class="form-control" id="cedula-generada" readonly />
+                        <span asp-validation-for="CedulaGenerada" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SaldoCuenta"></label>
+                        <input asp-for="SaldoCuenta" type="number" step="0.01" class="form-control" />
+                        <span asp-validation-for="SaldoCuenta" class="text-danger"></span>
+                    </div>
+                    <div class="form-check">
+                        <input asp-for="Estado" type="checkbox" class="form-check-input" />
+                        <label class="form-check-label" asp-for="Estado">Activo</label>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a asp-action="Index"><< Regresar</a>
+        </div>
+    </section>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.getElementById('provincia-select').addEventListener('change', function () {
+            var provincia = this.value;
+
+            if (provincia) {
+                var cedulaGenerada = generarCedula(provincia);
+                document.getElementById('cedula-generada').value = cedulaGenerada;
+
+                // También asignamos el valor generado al campo Cedula (si lo usas en el modelo)
+                document.getElementById('Cedula').value = cedulaGenerada;
+            } else {
+                document.getElementById('cedula-generada').value = '';
+                document.getElementById('Cedula').value = '';
+            }
+        });
+
+        function generarCedula(provinciaCodigo) {
+            var randomNumber = Math.floor(1000000 + Math.random() * 9000000); // 7 dígitos aleatorios
+            var cedula = provinciaCodigo + randomNumber;
+
+            // Calcular el dígito verificador
+            var digitoVerificador = calcularDigitoVerificador(cedula);
+            cedula += digitoVerificador;
+
+            return cedula;
+        }
+
+        function calcularDigitoVerificador(cedula) {
+            var coeficientes = [2, 1, 2, 1, 2, 1, 2, 1, 2];
+            var suma = 0;
+
+            for (var i = 0; i < coeficientes.length; i++) {
+                var valor = parseInt(cedula[i]) * coeficientes[i];
+                suma += valor >= 10 ? valor - 9 : valor;
+            }
+
+            var digitoVerificador = 10 - (suma % 10);
+            return digitoVerificador === 10 ? 0 : digitoVerificador;
+        }
+    </script>
+}

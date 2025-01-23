@@ -1,0 +1,212 @@
+﻿@model CRUD_PostgreSQL.Models.Cliente
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Crear Cliente</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index")">Inicio</a></li>
+                    <li class="breadcrumb-item active">Crear Cliente</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="createForm" asp-action="Create" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <h3 class="card-title">Agregar Nuevo Cliente</h3>
+                </div>
+                <div class="card-body">
+
+                    <!-- Campo para la provincia -->
+                    <div class="form-group">
+                        <label for="provincia">Provincia</label>
+                        <select name="provincia" id="provincia" class="form-control">
+                            <option value="">Seleccione una provincia</option>
+                            <option value="Azuay">Azuay</option>
+                            <option value="Bolívar">Bolívar</option>
+                            <option value="Cañar">Cañar</option>
+                            <option value="Carchi">Carchi</option>
+                            <option value="Cotopaxi">Cotopaxi</option>
+                            <option value="Chimborazo">Chimborazo</option>
+                            <option value="El Oro">El Oro</option>
+                            <option value="Esmeraldas">Esmeraldas</option>
+                            <option value="Guayas">Guayas</option>
+                            <option value="Imbabura">Imbabura</option>
+                            <option value="Loja">Loja</option>
+                            <option value="Los Ríos">Los Ríos</option>
+                            <option value="Manabí">Manabí</option>
+                            <option value="Morona Santiago">Morona Santiago</option>
+                            <option value="Napo">Napo</option>
+                            <option value="Pastaza">Pastaza</option>
+                            <option value="Pichincha">Pichincha</option>
+                            <option value="Tungurahua">Tungurahua</option>
+                            <option value="Zamora Chinchipe">Zamora Chinchipe</option>
+                            <option value="Galápagos">Galápagos</option>
+                            <option value="Sucumbíos">Sucumbíos</option>
+                            <option value="Orellana">Orellana</option>
+                            <option value="Santo Domingo de los Tsáchilas">Santo Domingo de los Tsáchilas</option>
+                            <option value="Santa Elena">Santa Elena</option>
+
+                        </select>
+                    </div>
+
+                    <!-- Campo para la cédula -->
+                    <div class="form-group">
+                        <label for="cedula">Cédula</label>
+                        <input type="text" asp-for="Cedula" class="form-control" id="cedula" placeholder="Cédula generada automáticamente" maxlength="10" readonly />
+                        <span asp-validation-for="Cedula" class="text-danger"></span>
+                    </div>
+
+                    <!-- Otros campos -->
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos</label>
+                        <input type="text" asp-for="Apellidos" class="form-control" id="apellidos" placeholder="Ingrese los apellidos" maxlength="100" required />
+                        <span asp-validation-for="Apellidos" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombres">Nombres</label>
+                        <input type="text" asp-for="Nombres" class="form-control" id="nombres" placeholder="Ingrese los nombres" maxlength="100" required />
+                        <span asp-validation-for="Nombres" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                        <div class="input-group date" id="fechaNacimiento" data-target-input="nearest">
+                            <input asp-for="FechaNacimiento" type="text" class="form-control datetimepicker-input" data-target="#fechaNacimiento" required />
+                            <div class="input-group-append" data-target="#fechaNacimiento" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mail">Correo Electrónico</label>
+                        <input type="email" asp-for="Mail" class="form-control" id="mail" placeholder="Ingrese el correo electrónico" required />
+                        <span asp-validation-for="Mail" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" asp-for="Telefono" class="form-control" id="telefono" placeholder="Ingrese el teléfono" maxlength="10" required />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" asp-for="Direccion" class="form-control" id="direccion" placeholder="Ingrese la dirección" maxlength="255" required />
+                        <span asp-validation-for="Direccion" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-check">
+                        <input asp-for="Estado" id="estado" type="checkbox" class="form-check-input" />
+                        <label class="form-check-label" for="estado">Activo</label>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-success btn-sm" id="btnGuardarC">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-arrow-left"></i> Regresar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+@section Scripts {
+    <!-- Cargar jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Generar la cédula automáticamente cuando se seleccione una provincia
+            $('#provincia').change(function () {
+                var provincia = $(this).val();
+                if (provincia) {
+                    var provinciaCode = obtenerCodigoProvincia(provincia);
+                    var cedula = generarCedula(provinciaCode);
+                    $('#cedula').val(cedula);
+                } else {
+                    $('#cedula').val('');
+                }
+            });
+
+            function obtenerCodigoProvincia(provincia) {
+                const provincias = {
+                    "Azuay": "01", "Bolívar": "02", "Cañar": "03", "Carchi": "04",
+                    "Cotopaxi": "05", "Chimborazo": "06", "El Oro": "07", "Esmeraldas": "08",
+                    "Guayas": "09", "Imbabura": "10", "Loja": "11", "Los Ríos": "12",
+                    "Manabí": "13", "Morona Santiago": "14", "Napo": "15", "Pastaza": "16",
+                    "Pichincha": "17", "Tungurahua": "18", "Zamora Chinchipe": "19",
+                    "Galápagos": "20", "Sucumbíos": "21", "Orellana": "22",
+                    "Santo Domingo de los Tsáchilas": "23", "Santa Elena": "24"
+                };
+                return provincias[provincia] || "00"; // Devuelve el código de la provincia o "00" si no coincide
+            }
+
+            function generarCedula(provinciaCode) {
+                let cedula = provinciaCode.padStart(2, '0');  // Aseguramos que tenga 2 dígitos
+
+                // Tercer dígito entre 0 y 5
+                cedula += Math.floor(Math.random() * 6);
+
+                // Generar 6 dígitos aleatorios
+                for (let i = 0; i < 6; i++) {
+                    cedula += Math.floor(Math.random() * 10);
+                }
+
+                // Calcular el dígito verificador
+                const digitoVerificador = calcularDigitoVerificador(cedula);
+
+                return cedula + digitoVerificador;
+            }
+
+            function calcularDigitoVerificador(cedula) {
+                const coeficientes = [2, 1, 2, 1, 2, 1, 2, 1, 2];
+                let suma = 0;
+
+                for (let i = 0; i < 9; i++) {
+                    let valor = parseInt(cedula.charAt(i)) * coeficientes[i];
+                    suma += valor > 9 ? valor - 9 : valor;
+                }
+
+                const digitoVerificador = 10 - (suma % 10);
+                return digitoVerificador === 10 ? 0 : digitoVerificador;
+            }
+
+            function validarCedula(cedula) {
+                if (cedula.length !== 10) {
+                    return false;
+                }
+
+                const provincia = parseInt(cedula.substr(0, 2));
+                if (provincia < 1 || provincia > 24) {
+                    return false;
+                }
+
+                const tercerDigito = parseInt(cedula.charAt(2));
+                if (tercerDigito > 5) {
+                    return false;
+                }
+
+                return parseInt(cedula.charAt(9)) === calcularDigitoVerificador(cedula.substr(0, 9));
+            }
+        });
+
+
+    </script>
+}
+

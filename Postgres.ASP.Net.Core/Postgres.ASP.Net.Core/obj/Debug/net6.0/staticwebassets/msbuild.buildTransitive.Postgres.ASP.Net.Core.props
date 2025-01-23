@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Postgres.ASP.Net.Core.props" />
+</Project>

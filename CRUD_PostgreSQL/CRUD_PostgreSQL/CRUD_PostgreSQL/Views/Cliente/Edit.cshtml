@@ -1,0 +1,155 @@
+﻿@model CRUD_PostgreSQL.Models.Cliente
+@{
+    ViewData["Title"] = "Editar Cliente";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Editar Cliente</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index")">Inicio</a></li>
+                    <li class="breadcrumb-item active">Editar Cliente</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="editForm" asp-action="Edit">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <h3 class="card-title">Editar Información del Cliente</h3>
+                </div>
+                <div class="card-body">
+                    <input type="hidden" asp-for="Codigo" />
+
+                    <div class="form-group">
+                        <label for="cedula">Cédula</label>
+                        <input type="text" asp-for="Cedula" class="form-control" id="cedula" placeholder="Ingrese la cédula" maxlength="10" required />
+                        <span asp-validation-for="Cedula" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos</label>
+                        <input type="text" asp-for="Apellidos" class="form-control" id="apellidos" placeholder="Ingrese los apellidos" maxlength="50" required />
+                        <span asp-validation-for="Apellidos" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombres">Nombres</label>
+                        <input type="text" asp-for="Nombres" class="form-control" id="nombres" placeholder="Ingrese los nombres" maxlength="50" required />
+                        <span asp-validation-for="Nombres" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                        <div class="input-group date" id="fechaNacimiento" data-target-input="nearest">
+                            <input asp-for="FechaNacimiento" type="text" class="form-control datetimepicker-input" data-target="#fechaNacimiento" required />
+                            <div class="input-group-append" data-target="#fechaNacimiento" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mail">Correo Electrónico</label>
+                        <input type="email" asp-for="Mail" class="form-control" id="mail" placeholder="Ingrese el correo electrónico" required />
+                        <span asp-validation-for="Mail" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" asp-for="Telefono" class="form-control" id="telefono" placeholder="Ingrese el teléfono" maxlength="10" required />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" asp-for="Direccion" class="form-control" id="direccion" placeholder="Ingrese la dirección" maxlength="200" required />
+                        <span asp-validation-for="Direccion" class="text-danger"></span>
+                    </div>
+
+                    <!-- Campo para Provincia -->
+                    <div class="form-group">
+                        <label for="provincia">Provincia</label>
+                        <select asp-for="Provincia" class="form-control">
+                            <option value="">Seleccione una provincia</option>
+                            <option value="Azuay">Azuay</option>
+                            <option value="Bolívar">Bolívar</option>
+                            <option value="Cañar">Cañar</option>
+                            <option value="Carchi">Carchi</option>
+                            <option value="Cotopaxi">Cotopaxi</option>
+                            <option value="Chimborazo">Chimborazo</option>
+                            <option value="El Oro">El Oro</option>
+                            <option value="Esmeraldas">Esmeraldas</option>
+                            <option value="Guayas">Guayas</option>
+                            <option value="Imbabura">Imbabura</option>
+                            <option value="Loja">Loja</option>
+                            <option value="Los Ríos">Los Ríos</option>
+                            <option value="Manabí">Manabí</option>
+                            <option value="Morona Santiago">Morona Santiago</option>
+                            <option value="Napo">Napo</option>
+                            <option value="Pastaza">Pastaza</option>
+                            <option value="Pichincha">Pichincha</option>
+                            <option value="Tungurahua">Tungurahua</option>
+                            <option value="Zamora Chinchipe">Zamora Chinchipe</option>
+                            <option value="Galápagos">Galápagos</option>
+                            <option value="Sucumbíos">Sucumbíos</option>
+                            <option value="Orellana">Orellana</option>
+                            <option value="Santo Domingo de los Tsáchilas">Santo Domingo de los Tsáchilas</option>
+                            <option value="Santa Elena">Santa Elena</option>
+                        </select>
+                        <span asp-validation-for="Provincia" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Saldo">Saldo</label>
+                        <input asp-for="Saldo" class="form-control" />
+                        <span asp-validation-for="Saldo" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-check">
+                        <input asp-for="Estado" id="estado" type="checkbox" class="form-check-input" />
+                        <label class="form-check-label" for="estado">Activo</label>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-success btn-sm" id="btnGuardarE">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-arrow-left"></i> Regresar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}

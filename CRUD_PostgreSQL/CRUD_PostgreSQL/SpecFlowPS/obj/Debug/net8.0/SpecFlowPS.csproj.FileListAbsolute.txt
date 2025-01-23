@@ -1,0 +1,5 @@
+C:\Users\SEBASTIAN\source\repos\CRUD_PostgreSQL\SpecFlowPS\obj\Debug\net8.0\SpecFlowPS.csproj.AssemblyReference.cache
+C:\Users\SEBASTIAN\source\repos\CRUD_PostgreSQL\SpecFlowPS\obj\Debug\net8.0\SpecFlowPS.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SEBASTIAN\source\repos\CRUD_PostgreSQL\SpecFlowPS\obj\Debug\net8.0\SpecFlowPS.AssemblyInfoInputs.cache
+C:\Users\SEBASTIAN\source\repos\CRUD_PostgreSQL\SpecFlowPS\obj\Debug\net8.0\SpecFlowPS.AssemblyInfo.cs
+C:\Users\SEBASTIAN\source\repos\CRUD_PostgreSQL\SpecFlowPS\obj\Debug\net8.0\SpecFlowPS.csproj.CoreCompileInputs.cache

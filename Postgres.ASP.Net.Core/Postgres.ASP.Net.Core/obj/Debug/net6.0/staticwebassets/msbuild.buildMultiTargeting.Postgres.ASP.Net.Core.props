@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Postgres.ASP.Net.Core.props" />
+</Project>
